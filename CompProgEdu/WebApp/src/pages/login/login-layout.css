@@ -1,0 +1,39 @@
+body {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.loginFormBackground {
+  background: #303d42;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+#pageText {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: white;
+  font-size: 78px;
+  line-height: 117px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#subPageText {
+  color: rgb(119, 235, 154);
+  font-size: 96px;
+}
+
+#loginFormHeader {
+  color: white;
+}
+
+#leftGrid {
+  padding-left: 60px;
+  margin-left: -10em;
+}
+#rightGrid {
+  padding-left: -70px;
+  margin-right: -10em;
+}

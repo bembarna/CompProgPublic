@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100% !important;
+}
+
+.home-background {
+  width: 100%;
+  height: 100%;
+  background: #3c4b50;
+  position: absolute;
+}
+
+.container {
+  height: 100%;
+}
+
+#root {
+  height: 100% !important;
+}

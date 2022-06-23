@@ -1,0 +1,58 @@
+#aboutUsDiv {
+  background-color: white;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 6em;
+  padding-top: 6em;
+  width: 100%;
+}
+
+#aboutUsHeader {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: medium;
+  color: white;
+  font-size: 78px;
+  line-height: 100px;
+  text-align: center;
+  padding-top: 2.1em;
+}
+
+#subAboutContainerHeader {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  color: black;
+}
+
+#authorSubTitleText {
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: black;
+}
+
+#aboutUsSegment {
+  top: 5em;
+}
+
+#aboutUsContainer {
+  height: 660px;
+}
+
+#aboutUsContainerHeader {
+  font-size: 36px;
+  color: black;
+}
+
+#ourTeamContainer {
+  height: 1000px;
+  padding-left: 7.5em;
+}
+
+#teamHeader {
+  font-size: 36px;
+  color: black;
+  padding-right: 3em;
+  padding-bottom: 1em;
+}

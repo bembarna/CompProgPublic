@@ -1,0 +1,16 @@
+body {
+  background: #3c4b50 !important;
+}
+
+.background {
+  height: 100%;
+  padding-top: 20px;
+}
+
+.container {
+  height: 100%;
+}
+
+#root {
+  height: 100% !important;
+}

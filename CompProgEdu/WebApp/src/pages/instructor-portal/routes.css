@@ -1,0 +1,14 @@
+.instructor-background {
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  position: absolute;
+}
+
+.container {
+  height: 100%;
+}
+
+#root {
+  height: 100% !important;
+}

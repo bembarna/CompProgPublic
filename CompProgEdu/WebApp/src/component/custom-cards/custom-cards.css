@@ -1,0 +1,14 @@
+#customCards {
+  height: em;
+}
+#customCardHeader {
+  margin-top: 2.5em;
+  font-size: x-large;
+  padding-bottom: 5px;
+}
+
+#customCardHeader2 {
+  font-size: large;
+  margin-top: 1em;
+  margin-bottom: 4em;
+}

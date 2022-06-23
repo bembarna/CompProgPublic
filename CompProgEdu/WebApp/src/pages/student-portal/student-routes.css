@@ -1,0 +1,17 @@
+body {
+  background: #3c4b50 !important;
+}
+
+.student-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.container {
+  height: 100%;
+}
+
+#root {
+  height: 100% !important;
+}

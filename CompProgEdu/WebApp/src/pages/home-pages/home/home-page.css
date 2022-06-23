@@ -1,0 +1,53 @@
+#headerOne {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: medium;
+  color: white;
+  font-size: 78px;
+  line-height: 100px;
+}
+
+#headerTwo {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: white;
+  font-size: 36px;
+}
+
+#topRow {
+  padding-top: 10em;
+}
+
+#rightHomeGrid {
+  margin-right: 10em;
+}
+
+#homeImage {
+  margin-right: 10em;
+}
+
+#headerButton {
+  margin-top: 50px;
+}
+
+#ourPurposeDiv {
+  background-color: white;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  padding-bottom: 6em;
+  padding-top: 6em;
+  width: 100%;
+}
+
+#middleGrid {
+  padding-bottom: 5em;
+}
+
+#gridColumns {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+#mainPageContainer {
+  margin-top: 60px;
+}

@@ -1,0 +1,4515 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CompProgEdu API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/assignments/by-id/{id}": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentDetailDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/assignments/by-course-id/{courseId}": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "GetAllAssignmentsByCourseId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentSummaryDtoListPaginatedResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/assignments/student/{courseId}": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "GetAllStudentAssignmentsByCourseId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentSummaryDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/assignments": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateAssignmentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateAssignmentByIdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentDetailDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AssignmentGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/assignments/assignment-submission": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "operationId": "SubmitAssignment",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "assignmentId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "code",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "language",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "submission",
+            "type": "string",
+            "format": "binary"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/SubmissionResultValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/authenticate/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Login",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LoginResponseValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/authenticate/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Register",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/authenticate/register-student": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "RegisterStudent",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterStudentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/authenticate/register-instructor": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "RegisterInstructor",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterInstructorRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/authenticate/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/authenticate/get-me": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "GetMe",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetMeDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/courses": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseDetailDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/courses/instructor/{instructorId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "GetAllByInstructorId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "instructorId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseSummaryDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/courses/student/{studentId}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "GetAllByStudentId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "studentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseSummaryDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/courses/{id}": {
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CourseDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CourseGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/desired-outputs/{id}": {
+      "get": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/desired-outputs/by-assignment/{assignmentId}": {
+      "get": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "GetByAssignmentId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "assignmentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/desired-outputs": {
+      "post": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateDesiredOutputRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateDesiredOutputRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/desired-outputs/order": {
+      "put": {
+        "tags": [
+          "DesiredOutputs"
+        ],
+        "operationId": "UpdateOrder",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DesiredOutputGetDto"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DesiredOutputGetDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors": {
+      "post": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateInstructorRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorResponseDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "GetAll",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorGetAllResponseDtoListValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors/add-student-to-course": {
+      "post": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "AddStudentToCourse",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddStudentToCourseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors/extract": {
+      "post": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "ExtractFromFile",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file",
+            "type": "string",
+            "format": "binary"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentDetailDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors/upload": {
+      "post": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "AddStudentsFromFile",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "StudentList",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "CourseId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentDetailDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors/{id}": {
+      "get": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorResponseDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/InstructorDetailDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructors/all-course-students/{courseId}": {
+      "get": {
+        "tags": [
+          "Instructors"
+        ],
+        "operationId": "GetCourseStudents",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "courseId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoListPaginatedResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructor-submissions": {
+      "post": {
+        "tags": [
+          "InstructorSubmissions"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "assignmentId",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "formData",
+            "name": "codeFile",
+            "type": "string",
+            "format": "binary"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorSubmissionDetailDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InstructorSubmissions"
+        ],
+        "operationId": "DeleteByAssignmentId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "assignmentId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorSubmissionDetailDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructor-submissions/{id}": {
+      "get": {
+        "tags": [
+          "InstructorSubmissions"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InstructorSubmissionDetailDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructor-submissions/child-{id}": {
+      "get": {
+        "tags": [
+          "InstructorSubmissions"
+        ],
+        "operationId": "GetChildById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CurlySetDetailDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/instructor-submissions/tree-node": {
+      "get": {
+        "tags": [
+          "InstructorSubmissions"
+        ],
+        "operationId": "GetTreeNodes",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "assignmentId",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TreeNodeDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/jdoodle-api/test-code-exe": {
+      "post": {
+        "tags": [
+          "JDoodleApiTest"
+        ],
+        "operationId": "CreateNew",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SendToJDoodleApiRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/JDoodleRequestValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/method-test-case/{id}": {
+      "get": {
+        "tags": [
+          "MethodTestCase"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MethodTestCaseGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/method-test-case/by-assignment/{assignmentId}": {
+      "get": {
+        "tags": [
+          "MethodTestCase"
+        ],
+        "operationId": "GetByAssignmentId",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "assignmentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MethodTestCaseGetDtoListValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/method-test-case": {
+      "post": {
+        "tags": [
+          "MethodTestCase"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateMethodTestCaseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MethodTestCaseGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MethodTestCase"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateMethodTestCaseRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MethodTestCaseGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MethodTestCase"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MethodTestCaseGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/sendgrid-api/send-email": {
+      "post": {
+        "tags": [
+          "SendGridAPITest"
+        ],
+        "operationId": "CreateNew",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SendToSendGridRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/students": {
+      "post": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateStudentRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "GetAll",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentGetAllResponseDtoListValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{id}": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/StudentUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/students/{id}/update-password": {
+      "put": {
+        "tags": [
+          "Students"
+        ],
+        "operationId": "UpdatePassword",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateStudentPasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/StudentResponseDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/test-account": {
+      "post": {
+        "tags": [
+          "TestAccount"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateTestAccountRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TestAccountGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "TestAccount"
+        ],
+        "operationId": "GetAll",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TestAccountGetDtoListValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TestAccount"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TestAccountGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/test-account/{id}": {
+      "get": {
+        "tags": [
+          "TestAccount"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TestAccountGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "TestAccount"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/TestAccountDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TestAccountGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "GetById",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Delete",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "operationId": "Update",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UserDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/UserGetDtoValidateableResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CourseGetDto": {
+      "required": [
+        "section",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "instructorId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "UserClaim": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "claimType": {
+          "type": "string"
+        },
+        "claimValue": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "loginProvider": {
+          "type": "string"
+        },
+        "providerKey": {
+          "type": "string"
+        },
+        "providerDisplayName": {
+          "type": "string"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "UserToken": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "loginProvider": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "RoleClaim": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/Role"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "claimType": {
+          "type": "string"
+        },
+        "claimValue": {
+          "type": "string"
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRole"
+          }
+        },
+        "roleClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleClaim"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "normalizedName": {
+          "type": "string"
+        },
+        "concurrencyStamp": {
+          "type": "string"
+        }
+      }
+    },
+    "UserRole": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "role": {
+          "$ref": "#/definitions/Role"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "User": {
+      "required": [
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "userClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserClaim"
+          }
+        },
+        "userLogins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserLogin"
+          }
+        },
+        "userTokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserToken"
+          }
+        },
+        "userRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserRole"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "normalizedUserName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "normalizedEmail": {
+          "type": "string"
+        },
+        "emailConfirmed": {
+          "type": "boolean"
+        },
+        "passwordHash": {
+          "type": "string"
+        },
+        "securityStamp": {
+          "type": "string"
+        },
+        "concurrencyStamp": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberConfirmed": {
+          "type": "boolean"
+        },
+        "twoFactorEnabled": {
+          "type": "boolean"
+        },
+        "lockoutEnd": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "lockoutEnabled": {
+          "type": "boolean"
+        },
+        "accessFailedCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Instructor": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Student": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "studentCourses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentCourse"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "grade": {
+          "format": "double",
+          "type": "number"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StudentCourse": {
+      "type": "object",
+      "properties": {
+        "studentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "student": {
+          "$ref": "#/definitions/Student"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "course": {
+          "$ref": "#/definitions/Course"
+        }
+      }
+    },
+    "Course": {
+      "required": [
+        "section",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "instructor": {
+          "$ref": "#/definitions/Instructor"
+        },
+        "studentCourses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentCourse"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "instructorId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "MethodTestCase": {
+      "required": [
+        "output",
+        "paramInputs"
+      ],
+      "type": "object",
+      "properties": {
+        "assignment": {
+          "$ref": "#/definitions/Assignment"
+        },
+        "input": {
+          "type": "string",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "methodTestInjectable": {
+          "type": "string"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "paramInputs": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "Assignment": {
+      "required": [
+        "allowedLanguages",
+        "assignmentInstructions",
+        "assignmentName",
+        "exampleInput",
+        "exampleOutput",
+        "totalPointValue"
+      ],
+      "type": "object",
+      "properties": {
+        "course": {
+          "$ref": "#/definitions/Course"
+        },
+        "desiredOutputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DesiredOutput"
+          }
+        },
+        "methodTestCases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodTestCase"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentName": {
+          "type": "string"
+        },
+        "allowedLanguages": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "exampleInput": {
+          "type": "string"
+        },
+        "exampleOutput": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dueDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "visibilityDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "assignmentSolutionFileName": {
+          "type": "string"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DesiredOutput": {
+      "required": [
+        "input",
+        "output"
+      ],
+      "type": "object",
+      "properties": {
+        "assignment": {
+          "$ref": "#/definitions/Assignment"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "AssignmentDetailDto": {
+      "required": [
+        "allowedLanguages",
+        "assignmentInstructions",
+        "assignmentName",
+        "exampleInput",
+        "exampleOutput",
+        "totalPointValue"
+      ],
+      "type": "object",
+      "properties": {
+        "courseDto": {
+          "$ref": "#/definitions/CourseGetDto"
+        },
+        "desiredOutputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DesiredOutput"
+          }
+        },
+        "methodTestCases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodTestCase"
+          }
+        },
+        "totalPointsAssigned": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentName": {
+          "type": "string"
+        },
+        "allowedLanguages": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "exampleInput": {
+          "type": "string"
+        },
+        "exampleOutput": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dueDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "visibilityDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "assignmentSolutionFileName": {
+          "type": "string"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "fieldName": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "AssignmentDetailDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/AssignmentDetailDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "AssignmentSummaryDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentName": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentSolution": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string"
+        },
+        "visibilityDate": {
+          "type": "string"
+        }
+      }
+    },
+    "AssignmentSummaryDtoListPaginatedResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssignmentSummaryDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "AssignmentSummaryDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssignmentSummaryDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CreateAssignmentRequest": {
+      "required": [
+        "allowedLanguages",
+        "assignmentInstructions",
+        "assignmentName",
+        "exampleInput",
+        "exampleOutput",
+        "totalPointValue"
+      ],
+      "type": "object",
+      "properties": {
+        "assignmentName": {
+          "type": "string"
+        },
+        "allowedLanguages": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "exampleInput": {
+          "type": "string"
+        },
+        "exampleOutput": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dueDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "visibilityDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "assignmentSolutionFileName": {
+          "type": "string"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "AssignmentGetDto": {
+      "required": [
+        "allowedLanguages",
+        "assignmentInstructions",
+        "assignmentName",
+        "exampleInput",
+        "exampleOutput",
+        "totalPointValue"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentName": {
+          "type": "string"
+        },
+        "allowedLanguages": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "exampleInput": {
+          "type": "string"
+        },
+        "exampleOutput": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dueDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "visibilityDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "assignmentSolutionFileName": {
+          "type": "string"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "AssignmentGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/AssignmentGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "UpdateAssignmentByIdRequest": {
+      "required": [
+        "allowedLanguages",
+        "assignmentInstructions",
+        "assignmentName",
+        "exampleInput",
+        "exampleOutput",
+        "totalPointValue"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentName": {
+          "type": "string"
+        },
+        "allowedLanguages": {
+          "type": "string"
+        },
+        "assignmentInstructions": {
+          "type": "string"
+        },
+        "exampleInput": {
+          "type": "string"
+        },
+        "exampleOutput": {
+          "type": "string"
+        },
+        "totalPointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dueDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "visibilityDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "assignmentSolutionFileName": {
+          "type": "string"
+        },
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "MethodTestCheckDto": {
+      "type": "object",
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "hint": {
+          "type": "string"
+        }
+      }
+    },
+    "SubmissionResult": {
+      "type": "object",
+      "properties": {
+        "totalScore": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "outputChecks": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "methodTestChecks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodTestCheckDto"
+          }
+        }
+      }
+    },
+    "SubmissionResultValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/SubmissionResult"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "stayLoggedIn": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserGetDto": {
+      "required": [
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserGetDto"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginResponseValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/LoginResponse"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "RegisterRequest": {
+      "required": [
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "UserGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/UserGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "RegisterStudentRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "RegisterInstructorRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "UserGetMeDto": {
+      "required": [
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "instructorId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "studentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "UserGetMeDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/UserGetMeDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CourseDetailDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "instructorName": {
+          "type": "string"
+        }
+      }
+    },
+    "CourseDetailDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/CourseDetailDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CreateCourseRequest": {
+      "required": [
+        "section",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "instructorId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CourseGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/CourseGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CourseSummaryDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "studentCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "instructorName": {
+          "type": "string"
+        }
+      }
+    },
+    "CourseSummaryDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CourseSummaryDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CourseDto": {
+      "required": [
+        "section",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "section": {
+          "type": "string"
+        },
+        "instructorId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DesiredOutputGetDto": {
+      "required": [
+        "input",
+        "output"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "DesiredOutputGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/DesiredOutputGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "DesiredOutputGetDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DesiredOutputGetDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CreateDesiredOutputRequest": {
+      "required": [
+        "input",
+        "output"
+      ],
+      "type": "object",
+      "properties": {
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "UpdateDesiredOutputRequest": {
+      "required": [
+        "input",
+        "output"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CreateInstructorRequest": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "InstructorResponseDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "InstructorResponseDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/InstructorResponseDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "InstructorGetAllResponseDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "InstructorGetAllResponseDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InstructorGetAllResponseDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "AddStudentToCourseRequest": {
+      "type": "object",
+      "properties": {
+        "courseId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StudentResponseDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StudentResponseDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/StudentResponseDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "StudentDetailDto": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StudentDetailDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentDetailDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "InstructorDetailDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentResponseDtoListPaginatedResponse": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentResponseDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "PrimitiveVariableDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "variableType": {
+          "type": "string"
+        },
+        "variableName": {
+          "type": "string"
+        },
+        "variableValue": {
+          "type": "string"
+        },
+        "variableSignature": {
+          "type": "string"
+        },
+        "curlySetId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PropertySignatureDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "propertyHead": {
+          "type": "string"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "propertyType": {
+          "type": "string"
+        },
+        "propertyName": {
+          "type": "string"
+        },
+        "accessModifier": {
+          "type": "string"
+        },
+        "isStatic": {
+          "type": "boolean"
+        },
+        "propertyFunction": {
+          "type": "string"
+        },
+        "curlySetId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ClassSignature": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullClassSignature": {
+          "type": "string"
+        },
+        "accessModifier": {
+          "type": "string"
+        },
+        "isStatic": {
+          "type": "boolean"
+        },
+        "isAbstract": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        }
+      }
+    },
+    "MethodParameter": {
+      "type": "object",
+      "properties": {
+        "parameterType": {
+          "type": "string"
+        },
+        "parameterName": {
+          "type": "string"
+        }
+      }
+    },
+    "MethodSignature": {
+      "type": "object",
+      "properties": {
+        "methodTestCase": {
+          "$ref": "#/definitions/MethodTestCase"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullMethodSignature": {
+          "type": "string"
+        },
+        "methodName": {
+          "type": "string"
+        },
+        "accessModifier": {
+          "type": "string"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "isReference": {
+          "type": "boolean"
+        },
+        "isAsync": {
+          "type": "boolean"
+        },
+        "isVoid": {
+          "type": "boolean"
+        },
+        "isStatic": {
+          "type": "boolean"
+        },
+        "isReadOnly": {
+          "type": "boolean"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "methodParameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodParameter"
+          }
+        },
+        "methodTestCaseId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "PrimitiveStatement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "statementSignature": {
+          "type": "string"
+        }
+      }
+    },
+    "ReturnStatement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnStartIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnEndIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnSignature": {
+          "type": "string"
+        }
+      }
+    },
+    "CurlySetDetailDto": {
+      "type": "object",
+      "properties": {
+        "primitiveVariables": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PrimitiveVariableDto"
+          }
+        },
+        "propertySignatures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PropertySignatureDto"
+          }
+        },
+        "curlySets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CurlySetDetailDto"
+          }
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "parentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isMethod": {
+          "type": "boolean"
+        },
+        "isMain": {
+          "type": "boolean"
+        },
+        "isClass": {
+          "type": "boolean"
+        },
+        "propertySignatureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "classSignatureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "classSignature": {
+          "$ref": "#/definitions/ClassSignature"
+        },
+        "methodSignatureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "methodSignature": {
+          "$ref": "#/definitions/MethodSignature"
+        },
+        "statementSignatureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "statementSignature": {
+          "$ref": "#/definitions/PrimitiveStatement"
+        },
+        "isPrimitiveStatement": {
+          "type": "boolean"
+        },
+        "returnStatementId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnStatement": {
+          "$ref": "#/definitions/ReturnStatement"
+        },
+        "hasReturn": {
+          "type": "boolean"
+        }
+      }
+    },
+    "InstructorSubmissionDetailDto": {
+      "type": "object",
+      "properties": {
+        "curlySet": {
+          "$ref": "#/definitions/CurlySetDetailDto"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "curlySetId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "InstructorSubmissionDetailDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/InstructorSubmissionDetailDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "CurlySetDetailDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/CurlySetDetailDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "TreeNodeDto": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TreeNodeDto"
+          }
+        }
+      }
+    },
+    "TreeNodeDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TreeNodeDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "SendToJDoodleApiRequest": {
+      "type": "object",
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "script": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "versionIndex": {
+          "type": "string"
+        }
+      }
+    },
+    "JDoodleRequest": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "string"
+        },
+        "memory": {
+          "type": "string"
+        },
+        "cpuTime": {
+          "type": "string"
+        }
+      }
+    },
+    "JDoodleRequestValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/JDoodleRequest"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "MethodTestCaseGetDto": {
+      "required": [
+        "output",
+        "paramInputs"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "methodTestInjectable": {
+          "type": "string"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "paramInputs": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "MethodTestCaseGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/MethodTestCaseGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "MethodTestCaseGetDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MethodTestCaseGetDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "MethodTestCaseDto": {
+      "required": [
+        "output",
+        "paramInputs"
+      ],
+      "type": "object",
+      "properties": {
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "paramInputs": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CreateMethodTestCaseRequest": {
+      "type": "object",
+      "properties": {
+        "methodTestCaseDto": {
+          "$ref": "#/definitions/MethodTestCaseDto"
+        },
+        "methodNodeKey": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateMethodTestCaseRequest": {
+      "required": [
+        "output",
+        "paramInputs"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnType": {
+          "type": "string"
+        },
+        "methodTestInjectable": {
+          "type": "string"
+        },
+        "assignmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "paramInputs": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        },
+        "hint": {
+          "type": "string"
+        },
+        "pointValue": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "SendToSendGridRequest": {
+      "type": "object",
+      "properties": {
+        "emailTo": {
+          "type": "string"
+        },
+        "personTo": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateStudentRequest": {
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "StudentGetAllResponseDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "grade": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentGetAllResponseDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StudentGetAllResponseDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "StudentUpdateDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "studentSchoolNumber": {
+          "type": "string"
+        },
+        "changedPassword": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UpdateStudentPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "newPassword": {
+          "type": "string"
+        },
+        "confirmPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateTestAccountRequest": {
+      "type": "object",
+      "properties": {
+        "accountNumber": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "lastVisit": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isPremium": {
+          "type": "boolean"
+        },
+        "numberOfPeople": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "TestAccountGetDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "lastVisit": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isPremium": {
+          "type": "boolean"
+        },
+        "numberOfPeople": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "TestAccountGetDtoValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/TestAccountGetDto"
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "TestAccountGetDtoListValidateableResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TestAccountGetDto"
+          },
+          "readOnly": true
+        },
+        "isValidResponse": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorResponse"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "TestAccountDto": {
+      "type": "object",
+      "properties": {
+        "accountNumber": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "emailAddress": {
+          "type": "string"
+        },
+        "lastVisit": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "isPremium": {
+          "type": "boolean"
+        },
+        "numberOfPeople": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CreateUserRequest": {
+      "required": [
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "UserDto": {
+      "required": [
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "type": "object",
+      "properties": {
+        "emailAddress": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Bearer {token}"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}
